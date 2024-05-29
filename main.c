@@ -112,7 +112,6 @@ int main(int argc, char *argv[]) {
     if (strncmp(argv[1], "--in", 4) == 0) {
         delay = atoi(argv[1] + 4);
         if (delay <= 0) {
-            delay = 0;
         }
     } else if (strcmp(argv[1], "--now") != 0) {
 
