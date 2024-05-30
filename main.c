@@ -81,7 +81,6 @@ Window get_active_window(Display *d) {
     XEvent event;
     Window root = DefaultRootWindow(d);
 
-    // Set cursor to crosshair
     Cursor cursor = XCreateFontCursor(d, XC_crosshair);
     XGrabPointer(d, root, False, ButtonPressMask, GrabModeAsync, GrabModeAsync, None, cursor, CurrentTime);
 
@@ -113,7 +112,6 @@ void screenshot_selected_area(Display *d) {
     int x1, y1, x2, y2, width, height;
     Window root = DefaultRootWindow(d);
 
-    // Set cursor to crosshair
     Cursor cursor = XCreateFontCursor(d, XC_crosshair);
     XGrabPointer(d, root, False, ButtonPressMask | ButtonReleaseMask, GrabModeAsync, GrabModeAsync, None, cursor, CurrentTime);
 
@@ -121,12 +119,9 @@ void screenshot_selected_area(Display *d) {
     x1 = event.xbutton.x_root;
     y1 = event.xbutton.y_root;
 
-    // Check if the button is released immediately after clicking
     XMaskEvent(d, ButtonReleaseMask, &event);
     if (event.xbutton.x_root == x1 && event.xbutton.y_root == y1) {
-        // Send notification that screenshot was canceled
         system("notify-send -u low -t 2000 -i i 'Screenshot' 'Screenshot has been cancelled'");
-        // Abort the program
         exit(0);
     }
 
