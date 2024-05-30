@@ -6,4 +6,6 @@
 # Usage:
 
 ./main --now
+./main --select 
 ./main --inX (X is number of seconds)
+./main --active (screenshots clicked window)
